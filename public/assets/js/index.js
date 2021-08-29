@@ -15,6 +15,13 @@ const SECTION_STATUS = Object.freeze({
   IN_PROGRESS: "IN_PROGRESS"
 });
 
+/**
+ * 
+ * @param {HTMLDivElement} parentElement = Element onto which accordian should be created
+ * @param {function} accordionTemplate = Accordion Header Template in function format which accepts an object
+ * @param {function} accordionItemTemplate = Accordion Section Template in async function format which accepts an object
+ * @param {Array<Object>} items = Array of Objects
+ */
 const accordion = (parentElement, accordionTemplate, accordionItemTemplate, items) => {
   const accordion = document.createElement("div");
   accordion.className = 'accordion';
@@ -60,6 +67,10 @@ const accordion = (parentElement, accordionTemplate, accordionItemTemplate, item
   parentElement.appendChild(accordion);
 }
 
+/**
+ * 
+ * @param {string} bookName - Book Name 
+ */
 const loadBook = async (bookName) => {
   const response = await fetch(`${baseURL}/api/book/${bookName}`);
   const data = await response.json();
@@ -67,6 +78,9 @@ const loadBook = async (bookName) => {
   return bookList;
 }
 
+/**
+ * @return a memoized function which accepts bookName and sectionId  
+ */
 const loadSectionMemoized = () => {
   const sectionMap = {};
   return async (bookName, sectionId) => {
@@ -81,8 +95,18 @@ const loadSectionMemoized = () => {
   }
 }
 
+/**
+ * function which accepts bookName and sectionId
+ * @param {string} bookName
+ * @param {string} sectionId
+ */
 const getSection = loadSectionMemoized();
 
+/**
+ * 
+ * @param {Number} completed = items completed
+ * @param {Number} total = total items 
+ */
 const ProgressBar = (completed, total) => {
   const remaining = Math.floor((total - completed)/total * 100);
   const completedPercent = 100 - remaining;
@@ -93,6 +117,9 @@ const ProgressBar = (completed, total) => {
   </div>`;
 }
 
+/**
+ * Load Book and render it into 'chapters' HTMLDivElement
+ */
 loadBook(BOOK).then(bookList => {
   const accordionTemplate = (section) => {
     return `<div class='chapter'>
