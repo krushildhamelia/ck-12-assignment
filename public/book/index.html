@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CK-12 Assignment - Table of Content</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Sora">
+    <style>
+        :root {
+            --primary-color: #e63956;
+            --secondary-color: #110F48;
+            --tertiary-color: #D8F4FF;
+            --green-color: #0fa573;
+            --background-color: #F8F8FA;
+            --border-color: #eae6e6;
+            --white-color: #ffffff;
+        }
+        html, body {
+            background: var(--background-color);
+            font-size: 16px;
+            font-family: 'Sora', serif;
+        }
+        .chapters {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        .accordion-header {
+            background-color: var(--white-color);
+            padding: 0.5rem 1rem;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            box-shadow: 0 1px 2px 0px;
+            cursor: pointer;
+            align-items: center;
+        }
+        .accordion-header:hover {
+            background-color: var(--tertiary-color);
+        }
+        .accordion-header .arrow {
+            border: solid var(--white-color);
+            border-width: 0 3px 3px 0;
+            display: flex;
+            padding: 3px;
+            width: 3px;
+            box-sizing: border-box;
+            height: 3px;
+            transition: transform 1s;
+        }
+        .accordion-collapsed .arrow {
+            transform: rotate(-316deg) translate(-50%, -50%);;
+            margin: 15px auto;
+        }
+        .accordion-expanded .arrow {
+            transform: rotate(225deg) translate(-50%, -50%);
+            margin: 7px auto;
+        }
+        .accordion .arrow-container {
+            min-width: 30px;
+            min-height: 30px;
+            max-width: 30px;
+            max-height: 30px;
+            background: var(--secondary-color);
+            position: relative;
+            box-shadow: 0px 1px 4px 0px;
+            transition: background-color 1s;
+            cursor: pointer;
+
+        }
+        .accordion-expanded .arrow-container {
+            background: var(--primary-color);
+        }
+        .accordion-loader {
+            border: 16px solid var(--border-color);
+            border-radius: 50%;
+            border-top: 16px solid var(--primary-color);
+            border-bottom: 16px solid var(--primary-color);
+            width: 60px;
+            height: 60px;
+            margin: 2rem auto;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        /* .accordion-expanded .accordion-section {
+            box-shadow: 0px 0px 5px 0px;
+            margin-top: 1rem;
+        } */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .lesson {
+            background: var(--white-color);
+            padding: 1rem;
+            border-top: 0.1rem solid var(--border-color);
+        }
+        .accordion-item {
+            margin-top: 0.4rem;
+        }
+        .accordion-collapsed .accordion-section {
+            transform: scaleY(0);
+        }
+        .accordion-collapsed-hide .accordion-section {
+            height: 0px;
+        }
+        .accordion-section {
+            overflow:hidden;
+            transition: transform 0.5s ease-out;
+            height: auto;
+            transform: scaleY(1); 
+            transform-origin: top;
+        }
+        .chapter {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .list-progress-container {
+            height: 25px;
+            width: 100px;
+            background-color: var(--secondary-color);
+            margin: 10px 5px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            position: relative;
+            box-shadow: 0px 1px 3px;
+            min-width: 110px;
+            max-width: 110px;
+        }
+        .progress-filler {
+            height: 100%;
+            border-radius: inherit;
+            text-align: center;
+            transition: width 1s ease-in-out;
+            border: 1px solid var(--green-color);
+            background-color: var(--green-color);
+        }
+
+        .progress-label {
+            padding: 5px;
+            color: var(--white-color);
+            position: absolute;
+            text-align: center;
+            width: 100%;
+        }
+        .lesson {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+        .progress {
+            position: relative;
+            min-width: 25px;
+            min-height: 25px;
+        }
+        .progress img {
+            width: 25px;
+            height: 25px;
+            z-index: 99;
+            position: absolute;
+            background-color: var(--white-color);
+        }
+        .lesson .title {
+            padding-left: 1rem;
+        }
+        .progress-line {
+            height: 100%;
+            border: 1px dashed var(--border-color);
+            position: absolute;
+            display: block;
+            left: 28px;
+            top: 70%;
+            z-index: 1;
+        }
+        .header {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='chapters' class="chapters">
+        <h2 class='header'>Maths</h1> 
+        <!-- <div class='accordion'>
+            <div class='accordion-header'>
+                <div class='title'>
+                    Title
+                </div>
+                <div class='progress'>
+                    9/10
+                </div>
+            </div>
+            <div class='accordion-expanded'>
+                <div class='lessons'>
+                    <div class='lesson'>
+                        Lesson Name
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script src="/assets/js/index.js"> </script>
+    
+</body>
+
+</html>
